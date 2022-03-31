@@ -1,30 +1,24 @@
-package ru.vtb.HomeWork3.entity;
+package ru.vtb.HomeWork3.dto;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name = "premieres")
-public class PremiereEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "premieres_id_seq", sequenceName = "premieres_id_seq")
+public class PremiereDto {
+    @JsonProperty
     private Long id;
-
-    @Column(name = "name", length = 64)
+    @JsonProperty
     private String name;
-    @Column(name = "description")
+    @JsonProperty("comment")
     private String description;
-    @Column(name = "agecategory")
+    @JsonProperty
     private Integer ageCategory;
-    @Column(name = "numberofseats")
+    @JsonProperty
     private Integer numberOfSeats;
 
-
-    public PremiereEntity() {
+    public PremiereDto() {
     }
 
-
-    public PremiereEntity(String name, String description, Integer ageCategory, Integer numberOfSeats) {
+    public PremiereDto(Long id, String name, String description, Integer ageCategory, Integer numberOfSeats) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.ageCategory = ageCategory;
@@ -69,15 +63,5 @@ public class PremiereEntity {
 
     public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
-    }
-
-    @Override
-    public String toString() {
-        return "Концерт{" +
-                "Наименование='" + name + '\'' +
-                ", Описание='" + description + '\'' +
-                ", Возростная категория=" + ageCategory +
-                ", Количестиво доступных мест=" + numberOfSeats +
-                '}';
     }
 }
